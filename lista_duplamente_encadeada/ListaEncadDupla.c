@@ -6,6 +6,7 @@ struct elemento {
 	struct elemento *ant;
 	struct aluno dados;
 	struct elemento *prox;
+	int* bola;
 };
 
 typedef struct elemento Elem;
@@ -18,6 +19,7 @@ Lista* cria_lista(){
 
 	return li;
 }
+
 
 void libera_lista(Lista* li){
 	
@@ -70,6 +72,7 @@ int insere_lista_inicio(Lista* li, struct aluno al){
 	no->prox = *li;
 	no->ant = NULL;
 
+
 	if(*li != NULL)
 		(*li)->ant = no;
 
@@ -77,6 +80,7 @@ int insere_lista_inicio(Lista* li, struct aluno al){
 
 	return 1;
 }
+
 
 int insere_lista_final(Lista* li, struct aluno al){
 	
@@ -86,7 +90,8 @@ int insere_lista_final(Lista* li, struct aluno al){
 	if(no == NULL) return 0;
 
 	no->dados = al;
-	no->prox = NULL; //*li;
+	no->prox = NULL;
+
 	
 	if(*li != NULL){
 		Elem* aux = *li;
@@ -101,7 +106,7 @@ int insere_lista_final(Lista* li, struct aluno al){
 		no->ant = NULL;
 		*li = no;
 	}
-
+		
 	return 1;
 }
 
@@ -229,8 +234,6 @@ int consulta_lista_pos(Lista* li, int pos, struct aluno *al){
 		no = no->prox;
 		count++;
 	}
-
-
 
 	if(no == NULL) return 0;
 
