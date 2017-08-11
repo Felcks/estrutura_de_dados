@@ -10,11 +10,17 @@ int main(void){
 	struct aluno* al2 = cria_aluno(15);
 	struct aluno* al3 = cria_aluno(20);
 
-	insere_lista_inicio(li, *al);
-	printf("%i\n", tamanho_lista(li));
-	libera_lista(li);
+	insere_lista_final(li, *al);
+	insere_lista_final(li, *al2);
+	insere_lista_final(li, *al3);
 
-	//a();
+	insere_lista_ordenada(li, *al3);
+
+	//printf("%i\n", tamanho_lista(li2));
+
+	printa_lista(li);
+
+	libera_lista(li);
 
 	return 0;
 }

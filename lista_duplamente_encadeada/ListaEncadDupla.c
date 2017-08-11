@@ -6,7 +6,6 @@ struct elemento {
 	struct elemento *ant;
 	struct aluno dados;
 	struct elemento *prox;
-	int* bola;
 };
 
 typedef struct elemento Elem;
