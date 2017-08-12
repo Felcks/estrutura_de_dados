@@ -13,12 +13,15 @@ int main(void){
 	insere_lista_final(li, *al);
 	insere_lista_final(li, *al2);
 	insere_lista_final(li, *al3);
+	insere_lista_ordenada(li, *al2);
 
-	insere_lista_ordenada(li, *al3);
-
-	//printf("%i\n", tamanho_lista(li2));
+	//remove_lista(li, 22);
 
 	printa_lista(li);
+
+	struct aluno aluno;
+	int i = consulta_lista_mat(li, 20, &aluno);
+	printf("\n%i\n", aluno.matricula);
 
 	libera_lista(li);
 
