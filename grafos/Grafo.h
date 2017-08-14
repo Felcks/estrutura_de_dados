@@ -10,3 +10,7 @@ int insere_aresta(Grafo* gr, int orig, int dest,
 int remove_aresta(Grafo* gr, int orig, int dest, int eh_digrafo);
 
 void busca_profundidade(Grafo* gr, int ini, int* visitado);
+
+void busca_largura(Grafo* gr, int ini, int* visitado);
+
+void busca_dijkstra(Grafo *gr, int ini, int *ant, float *dist);
