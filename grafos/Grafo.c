@@ -111,3 +111,108 @@ int remove_aresta(Grafo* gr, int orig, int dest, int eh_digrafo){
 
 	return 1;
 }
+
+void busca_profundidade_algoritmo(Grafo* gr, int ini, int *visitado, int count){
+
+	int i;
+	visitado[ini] = count;
+	for(i = 0; i<gr->grau[ini]; i++){
+		if(visitado[gr->arestas[ini][i]] > (count+1)){
+			busca_profundidade_algoritmo(gr, gr->arestas[ini][i],
+										 visitado, count+1);
+		}
+	}
+}
+
+
+void busca_profundidade(Grafo* gr, int ini, int* visitado){
+	int i, count = 1;
+	for(i = 0; i < gr->nro_vertices; i++)
+		visitado[i] = 99999;
+
+	busca_profundidade_algoritmo(gr, ini, visitado, count);
+}
+
+void busca_largura(Grafo* gr, int ini, int* visitado){
+
+	int i, vert, NV, count = 1, qtd, *fila, IF = 0, FF = 0;
+	for(i = 0; i<gr->nro_vertices; i++)
+		visitado[i] = 0;
+
+	NV = gr->nro_vertices;
+	fila  = (int*)malloc(NV * sizeof(int));
+	FF++;
+	fila[FF] = ini;
+	visitado[ini] = count;
+
+	while(IF != FF){
+		IF = (IF + 1) % NV;
+		vert = fila[IF];
+		count++;
+		for(i = 0; i < gr->grau[vert]; i++){
+			if(!visitado[gr->arestas[vert][i]]){
+				FF = (FF + 1) % NV;
+				fila[FF] = gr->arestas[vert][i];
+				visitado[gr->arestas[vert][i]] = count;
+			}
+		}
+	}
+}
+
+int menor_dist(float* dist, int *visitado, int NV){
+
+	int i, menor = -1, primeiro = 1;
+	for(i = 0; i < NV; i++){
+		if(dist[i] >= 0 && visitado[i] == 0){
+			if(primeiro){
+				menor = i;
+				primeiro = 0;
+			}
+			else{
+				if(dist[menor] > dist[i])
+					menor = i;
+			}
+		}
+	}
+
+	return menor;
+}
+
+void busca_dijkstra(Grafo *gr, int ini, int *ant, float *dist){
+
+	int i, count, NV, ind, *visitado, u;
+	count = NV = gr->nro_vertices;
+	visitado = (int*) malloc(NV * sizeof(int));
+	for(i = 0; i < NV; i++){
+		ant[i] = -1;
+		dist[i] = -1;
+		visitado[i] = 0;
+	}
+	dist[ini] = 0;
+
+	while(count > 0){
+		u = menor_dist(dist, visitado, NV);
+		if(u == -1)
+			break;
+
+		visitado[u] = 1;
+		count--;
+
+		for(i = 0; i < gr->grau[u]; i++){
+			ind = gr->arestas[u][i];
+			if(dist[ind] < 0){
+				
+				dist[ind] = dist[u] + 1;
+				ant[ind] = u;
+			}
+			else if(dist[ind] > dist[u] + 1){
+
+				dist[ind] = dist[u] + 1;
+				ant[ind] = u;
+			}
+		}
+	}
+
+	free(visitado);
+
+}

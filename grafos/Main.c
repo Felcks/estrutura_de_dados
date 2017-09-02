@@ -4,14 +4,25 @@
 
 int main(void){
 	
-	Grafo *gr = cria_grafo(20, 20, 0);
+	Grafo *gr = cria_grafo(5, 5, 0);
 
-	int x = insere_aresta(gr, 0, 1, 0, 0);
-	int y = remove_aresta(gr, 0, 22, 0);
-	int z = remove_aresta(gr, 1, 0, 0);
-	printf("sucesso: %i\n",x);
-	printf("sucesso: %i\n",y);
-	printf("sucesso: %i\n",z);
+	//Busca em profundidade
+	int eh_digrafo = 1;
+	insere_aresta(gr, 0, 1, eh_digrafo, 0);
+	insere_aresta(gr, 1, 2, eh_digrafo, 0);
+	insere_aresta(gr, 1, 3, eh_digrafo, 0);
+	insere_aresta(gr, 2, 4, eh_digrafo, 0);
+	insere_aresta(gr, 3, 0, eh_digrafo, 0);
+	insere_aresta(gr, 3, 4, eh_digrafo, 0);
+	insere_aresta(gr, 4, 1, eh_digrafo, 0);
+	insere_aresta(gr, 4, 3, eh_digrafo, 0);
+
+	float dist[5];
+	int ant[5];
+	busca_dijkstra(gr, 0, ant, dist);
+	for(int i = 0; i < 5; i++){
+		printf("%i = %f -- %i\n",i, dist[i], ant[i]);
+	}
 
 	libera_grafo(gr);
 
