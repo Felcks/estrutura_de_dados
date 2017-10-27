@@ -16,8 +16,7 @@ Lista* cria_lista(){
 
 	return li;
 }
-//Lista é um ponteiro de elemento
-//*ponteiro
+
 void libera_lista(Lista* li){
 	if(li != NULL){
 		Elem* no;
