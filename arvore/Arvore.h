@@ -26,4 +26,10 @@ int remove_arvore(Arvore* arvore, int dados);
 
 int consulta_arvore(Arvore* arvore, int dados);
 
+int fator_balanceamento(Elemento* no);
+
+void rotacao_esquerda(Arvore* arvore, Elemento* no);
+
+void rotacao_direita(Arvore* arvore, Elemento* no);
+
 void printa_arvore(Arvore* arvore);

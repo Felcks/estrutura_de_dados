@@ -42,9 +42,9 @@ int arvore_vazia(Arvore* arvore){
 
 int altura_arvore(Arvore* arvore){
 	if(arvore == NULL)
-		return 0;
+		return -2;
 	if(*arvore == NULL)
-		return 0;
+		return -2;
 
 
 	int alt_esq = altura_arvore(&((*arvore)->esq));
@@ -55,6 +55,7 @@ int altura_arvore(Arvore* arvore){
 	else
 		return alt_dir + 1;
 }
+
 
 int qtd_nos_arvore(Arvore* arvore){
 	if(arvore == NULL)
@@ -202,6 +203,32 @@ int consulta_arvore(Arvore* arvore, int dados){
 	}
 
 	return 0;
+}
+
+int fator_balanceamento(Elemento* no){
+
+	return altura_arvore(&(no->esq)) - altura_arvore(&(no->dir));
+}
+
+void rotacao_esquerda(Arvore* arvore, Elemento* no){
+
+	//pegar elemento mais a esquerda do elemento a direita
+	Elemento* dir = no->dir;
+	Elemento* mais_esq = dir->esq;
+	
+	dir->esq = no;
+	no->dir = mais_esq;
+	*arvore = dir;
+}
+
+void rotacao_direita(Arvore* arvore, Elemento* no){
+
+	Elemento* esq = no->esq;
+	Elemento* mais_dir = esq->dir;
+	
+	esq->dir = no;
+	no->esq = mais_dir;
+	*arvore = esq;
 }
 
 void printa_arvore(Arvore* arvore){
