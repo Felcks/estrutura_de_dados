@@ -42,10 +42,10 @@ int arvore_vazia(Arvore* arvore){
 
 int altura_arvore(Arvore* arvore){
 	if(arvore == NULL)
+
 		return -2;
 	if(*arvore == NULL)
 		return -2;
-
 
 	int alt_esq = altura_arvore(&((*arvore)->esq));
 	int alt_dir = altura_arvore(&((*arvore)->dir));
@@ -55,7 +55,6 @@ int altura_arvore(Arvore* arvore){
 	else
 		return alt_dir + 1;
 }
-
 
 int qtd_nos_arvore(Arvore* arvore){
 	if(arvore == NULL)

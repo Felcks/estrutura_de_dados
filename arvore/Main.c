@@ -54,6 +54,5 @@ int main(void){
 
 
 	printa_arvore(arvore);
-
 	return 0;
 }
