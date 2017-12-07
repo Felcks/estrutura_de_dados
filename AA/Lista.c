@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 Lista* cria_lista(){
+
 	Lista* li = (Lista*)malloc(sizeof(Lista));
 	if(li != NULL)
 		*li = NULL;
@@ -22,4 +23,31 @@ void libera_lista(Lista* li){
 		}
 		free(li);
 	}
+}
+
+int insere_lista_final(Lista* li, ElementoLista* no){
+	if(li == NULL) return 0;
+
+	no->prox = NULL;
+
+	if((*li) == NULL){ //Lista vazia
+		*li = no;
+	}
+	else{
+		ElementoLista* aux = *li;
+		while(aux->prox != NULL){
+			aux = aux->prox;
+		}
+		aux->prox = no;
+	}
+
+	return 1;
+}
+
+ElementoLista* cria_elemento_lista(unsigned int indice){
+
+	ElementoLista* elementoLista = (ElementoLista*)malloc(sizeof(ElementoLista));
+	elementoLista->indice = indice;
+
+	return elementoLista;
 }

@@ -5,8 +5,9 @@ typedef struct elemento {
 
 	unsigned int indice;
 	char site[256];
-	void *dir;
-	void *esq;
+	struct elemento *dir;
+	struct elemento *esq;
+	struct elemento *pai;
 } Elemento;
 
 typedef Elemento* Arvore;
@@ -15,5 +16,8 @@ Arvore* cria_arvore();
 void libera_arvore(Arvore* arvore);
 void libera_no(Elemento* no);
 
+int inserir_arvore(Arvore* arvore, unsigned int indice, char* site);
+int altura_arvore(Arvore* arvore);
+void printa_arvore(Arvore* arvore);
 
 #endif
