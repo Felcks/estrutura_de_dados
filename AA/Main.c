@@ -15,22 +15,19 @@ int main(void){
 
 	Lista* lista = cria_lista();
 
-	int c = 0;
+	char c[256];
 	do{
 		printar_opcoes();
-		switch(c = getchar()){
-
-			case '1':
-				cria_conjunto(lista);
-				break;
-			case '6':
-				exibe_arvores_lista(lista);
-				break;
-			default:
-				getchar();
-				break;
+		scanf("%s", c);
+		
+		if(strcmp(c, "1") == 0){
+			cria_conjunto(lista);
 		}
-	} while(c != 'F');
+		else if(strcmp(c, "6") == 0){
+			exibe_arvores_lista(lista);
+		}
+
+	} while(strcmp(c, "F") != 0);
 
 
 	return 0;
@@ -54,8 +51,8 @@ void cria_conjunto(Lista* lista){
 		indice_arvore++;
 
 		printf("Site %s inserido com sucesso\nDigite F para voltar ao menu ou ENTER para continuar.\n", site);
-		c = getchar();
-	} while(strcmp(c, "F") != 1);
+		scanf("%s", c);
+	} while(strcmp(c, "F") != 0);
 
 
 	elementoLista->arvore = arvore;
@@ -74,7 +71,7 @@ void exibe_arvores_lista(Lista* lista){
 
 		printf("Arvore associada ao indice %i da lista:\n", elementoLista->indice);
 		Arvore* arvore = elementoLista->arvore;
-		while(arvore != NULL){
+		if(arvore != NULL){
 
 			printa_arvore(arvore);
 		}
