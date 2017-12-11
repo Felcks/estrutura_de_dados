@@ -1,6 +1,8 @@
 #ifndef ARVORE_H_
 #define	ARVORE_H_
 
+#include <time.h>
+
 typedef struct elemento {
 
 	unsigned int indice;
@@ -18,6 +20,10 @@ void libera_no(Elemento* no);
 
 int inserir_arvore(Arvore* arvore, unsigned int indice, char* site);
 int altura_arvore(Arvore* arvore);
+int fator_balanceamento(Elemento* no);
+Elemento* consulta_arvore(Arvore* arvore, int indice);
+void copia_arvore(Arvore* from, Arvore* to);
+void interseccao_arvore(Arvore* from1, Arvore* from2, Arvore* to);
 void printa_arvore(Arvore* arvore);
 
 #endif

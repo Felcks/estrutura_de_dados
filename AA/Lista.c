@@ -25,6 +25,31 @@ void libera_lista(Lista* li){
 	}
 }
 
+int remove_lista(Lista* li, int indice){
+
+	if(li == NULL) return 0;
+
+	ElementoLista *ant, *no = *li;
+	while(no != NULL && no->indice != indice){
+		ant = no;
+		no = no->prox;
+	}
+
+	if(no == NULL) return 0;
+
+	if(no == *li){
+		*li = no->prox;
+	}
+	else{
+		ant->prox = no->prox;
+	}
+
+	libera_arvore(no->arvore);
+	free(no);
+
+	return 1;
+}
+
 int insere_lista_final(Lista* li, ElementoLista* no){
 	if(li == NULL) return 0;
 
@@ -50,4 +75,16 @@ ElementoLista* cria_elemento_lista(unsigned int indice){
 	elementoLista->indice = indice;
 
 	return elementoLista;
+}
+
+ElementoLista* consulta_lista(Lista* li, int indice){
+	
+	if(li == NULL) return NULL;
+
+	ElementoLista* no = *li;
+	while(no != NULL && no->indice != indice){
+		no = no->prox;
+	}
+
+	return no;
 }
