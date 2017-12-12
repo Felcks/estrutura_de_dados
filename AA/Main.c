@@ -62,8 +62,9 @@ int main(void){
 //Opção 1 - Criar Conjunto
 void cria_conjunto(Lista* lista){
 
+	printf("\nCRIACAO DE CONJUNTO\n");
 	ElementoLista* elementoLista = cria_elemento_lista(current_list_indice);
-	printf("Conjunto de indice %i criada com sucesso!\n",current_list_indice);
+	printf("Conjunto de indice %i criada com sucesso!\n\n",current_list_indice);
 	current_list_indice++;
 
 	Arvore* arvore = cria_arvore();
@@ -76,8 +77,9 @@ void cria_conjunto(Lista* lista){
 		inserir_arvore(arvore, indice_arvore, site);
 		indice_arvore++;
 
-		printf("Site %s inserido com sucesso\nDigite F+ENTER para voltar ao menu ou A+ENTER para continuar.\n", site);
+		printf("Site %s inserido com sucesso!\n\nDigite F+ENTER para voltar ao menu ou A+ENTER para continuar.\n", site);
 		scanf("%s", c);
+		printf("\n");
 	} while(strcmp(c, "F") != 0);
 
 
@@ -89,10 +91,12 @@ void cria_conjunto(Lista* lista){
 //Opção 2 - Destruir Conjunto
 void destroi_conjunto(Lista* lista){
 
+	printf("\nDESTRUICAO DE CONJUNTO\n");
+
 	int indice = -1;
 	int sucess = 0;
 	do{
-		printf("Digite -1 para cancelar operação ou digite o indice do conjunto a ser destruido: ");
+		printf("Digite -1 para cancelar operacao ou digite o indice do conjunto a ser destruido: ");
 		scanf("%i", &indice);
 
 		if(indice == -1)
@@ -100,10 +104,10 @@ void destroi_conjunto(Lista* lista){
 
 		sucess = remove_lista(lista, indice);
 		if(sucess == 0){
-			printf("Ocorreu um erro na remocao do conjunto\n");
+			printf("Ocorreu um erro na remocao do conjunto.\n\n");
 		}
 		else{
-			printf("Conjunto de indíce %i removido com sucesso!\n", indice);
+			printf("Conjunto de indice %i removido com sucesso!\n\n", indice);
 		}
 		
 	}while(sucess == 0);
@@ -135,7 +139,7 @@ void pesquisa_elemento(Lista* lista){
 		}
 		else if(indice == -1){
 			break;
-			printf("Operação cancelada!\n");
+			printf("Operacao cancelada!\n");
 			return;
 		}
 
@@ -145,21 +149,21 @@ void pesquisa_elemento(Lista* lista){
 
 
 	if(arvore == NULL){
-		printf("Ocorreu um erro inesperado.\n");
+		printf("Operacao cancelada.\n");
 		return;
 	}
 
 	int indice_arvore = 0;
-	printf("Digite o elemento a ser pesquisado: ");
+	printf("Digite o elemento da arvore a ser pesquisado: ");
 	scanf("%i", &indice_arvore);
 
 
 	Elemento* elemento = consulta_arvore(arvore, indice_arvore);
 	if(elemento != NULL){
-		printf("Elemento %i encontrado. Site: %s\n", elemento->indice, elemento->site);
+		printf("Elemento %i encontrado! Site: %s\n", elemento->indice, elemento->site);
 	}
 	else{
-		printf("Elemento nao encontrado\n");
+		printf("Elemento nao encontrado.\n");
 	}
 }
 
@@ -266,8 +270,10 @@ void interseccao(Lista* lista){
 	insere_lista_final(lista, elementoLista);
 }
 
-//Opção 6 - Exibir listas
+//Opção 6 - Exibir lista
 void exibe_lista(Lista* lista){
+
+	printf("\nEXIBIR ARVORES\n");
 
 	if(lista == NULL)
 		return;
@@ -286,18 +292,20 @@ void exibe_lista(Lista* lista){
 //Opção 7 - Exibir arvore
 void exibe_arvore(Lista* lista){
 
+	printf("\nEXIBIR ELEMENTOS DA ARVORE\n");
+
 	if(lista == NULL)
 		return;
 
-	int indice_arvore = -1;
+	int indice_arvore_local = -1;
 	printf("Digite o indice da arvore a ser exibida: ");
-	scanf("%i", &indice_arvore);
+	scanf("%i", &indice_arvore_local);
 
 	int sucess = 0;
 	ElementoLista* elementoLista = *lista;
 	while(elementoLista != NULL){
 
-		if(elementoLista->indice == indice_arvore){
+		if(elementoLista->indice == indice_arvore_local){
 			printa_arvore(elementoLista->arvore);
 			sucess = 1;
 			break;
@@ -307,33 +315,34 @@ void exibe_arvore(Lista* lista){
 	}
 
 	if(sucess == 0){
-		printf("Arvore não encontrada na lista, digite ENTER para continuar: ");
-		scanf("%i", indice_arvore);
+		printf("Arvore nao encontrada na lista.\n");
 	}
 }
 
 //Opção 8 - Exibe altura arvore
 void exibe_altura_arvore(Lista* lista){
 
+	printf("\nEXIBIR ALTURA E FATOR BALANCEAMENTO DA ARVORE\n");
+
 	if(lista == NULL)
 		return;
 
-	int indice_arvore = -1;
+	int indice_arvore_local = -1;
 	printf("Digite o indice da arvore a ser exibida: ");
-	scanf("%i", &indice_arvore);
+	scanf("%i", &indice_arvore_local);
 
 	int sucess = 0;
 	ElementoLista* elementoLista = *lista;
 	while(elementoLista != NULL){
 
-		if(elementoLista->indice == indice_arvore){
+		if(elementoLista->indice == indice_arvore_local){
 			int altura = altura_arvore(elementoLista->arvore);
 			int balanceamento = fator_balanceamento(*elementoLista->arvore);
 
 			if(balanceamento == 0 || balanceamento == 1 || balanceamento == -1)
-				printf("A arvore tem altura:%i e fator balanceamento:%i. Logo esta balanceada!\n", altura, balanceamento);
+				printf("Altura: %i -- Fator Balanceamento: %i -- Balanceada\n", altura, balanceamento);
 			else
-				printf("A arvore tem altura:%i e fator balanceamento:%i. Logo esta desbalanceada!\n", altura, balanceamento);
+				printf("Altura: %i -- Fator Balanceamento: %i -- Desbalanceada\n", altura, balanceamento);
 			
 			sucess = 1;
 			break;
@@ -343,8 +352,7 @@ void exibe_altura_arvore(Lista* lista){
 	}
 
 	if(sucess == 0){
-		printf("Arvore não encontrada na lista, digite ENTER para continuar: ");
-		scanf("%i", indice_arvore);
+		printf("Arvore nao encontrada na lista.\n");
 	}
 }
 

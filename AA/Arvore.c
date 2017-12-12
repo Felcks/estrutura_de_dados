@@ -179,7 +179,7 @@ void printa_arvore(Arvore* arvore){
 	if(*arvore == NULL)
 		return;
 
-	printf("%i site:%s\n", (*arvore)->indice, (*arvore)->site);
+	printf("id: %i -- site: %s\n", (*arvore)->indice, (*arvore)->site);
 	printa_arvore(&((*arvore)->esq));
 	printa_arvore(&((*arvore)->dir));
 }
