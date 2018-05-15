@@ -6,7 +6,7 @@ int main(void){
 	Arvore* arvore = cria_arvore();
 
 	//rotação dupla direita (esquerda depois direita)
-	int b = inserir_arvore(arvore, 8);
+	 int b = inserir_arvore(arvore, 8);
 	int c = inserir_arvore(arvore, 4);
 	int d = inserir_arvore(arvore, 10);
 	int e = inserir_arvore(arvore, 2);
